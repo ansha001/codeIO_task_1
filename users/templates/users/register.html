@@ -3,10 +3,10 @@
     <div class="form">
         <form class="register" method="post">{% csrf_token %}
             <h1>Register Account</h1>
-            <input type="email" class="email" placeholder="Email address" required>
-            <input type="text" class="username" placeholder="Username" minlength="4" maxlength="25" autocomplete="on" required>
-            <input type="password" class="password1" placeholder="Password" minlength="4" autocomplete="new-password" required>
-            <input type="password" class="password2" placeholder="Confirm Password" required>
+            <input type="email" name="email" class="email" placeholder="Email address" required>
+            <input type="text" name="username" class="username" placeholder="Username" minlength="4" maxlength="25" autocomplete="on" required>
+            <input type="password" name="password1" class="password1" placeholder="Password" minlength="4" autocomplete="new-password" required>
+            <input type="password" name="password2" class="password2" placeholder="Confirm Password" required>
 
             {% for field in registration_form %}
 				<p>

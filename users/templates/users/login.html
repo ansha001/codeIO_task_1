@@ -3,8 +3,8 @@
     <div class="form">
         <form class="login" method="post">{% csrf_token %}
             <h1>Account Login</h1>
-            <input type="email" class="email" placeholder="Email address" required>
-            <input class="password" type="password" placeholder="Password" minlength="4" autocomplete="current-password" required>
+            <input type="email"  name="email" class="email" placeholder="Email address" required>
+            <input class="password" name="password" type="password" placeholder="Password" minlength="4" autocomplete="current-password" required>
 
             {% for field in login_form %}
 				<p>

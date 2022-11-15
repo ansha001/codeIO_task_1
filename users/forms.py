@@ -26,7 +26,7 @@ class RegistrationForm(UserCreationForm):
 			account = Users.objects.exclude(pk=self.instance.pk).get(username=username)
 		except Users.DoesNotExist:
 			return username
-		raise forms.ValidationError('Username "%s" is already in use.' % account)
+		raise forms.ValidationError('Username "%s" is already in use.' % username)
 
 
 class AccountAuthenticationForm(forms.ModelForm):
