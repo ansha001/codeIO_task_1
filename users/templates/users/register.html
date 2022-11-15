@@ -23,10 +23,10 @@
             
             <button>Sign Up</button>
             <p class="message">Already registered? 
-                <a href="#">Sign In</a>
+                <a href="{% url 'login' %}">Sign In</a>
             </p>
         </form>
-        <form class="login" action="post">{% csrf_token %}
+        <!-- <form class="login" action="post">{% csrf_token %}
             <h1>Account Login</h1>
             <input type="email" class="email" placeholder="Email address" required>
             <input class="password1" type="password" placeholder="Password" minlength="6" autocomplete="current-password" required>
@@ -34,7 +34,7 @@
             <p class="message">Not registered? 
                 <a href="#">Create an account</a>
             </p>
-        </form>
+        </form> -->
     </div>
 {% endblock content %}
     

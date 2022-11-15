@@ -7,6 +7,14 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Home</h1>
+    <nav>
+        <h1>Home Page</h1>
+        {% if request.user.is_authenticated %}
+            <button><a href="{% url 'logout' %}">Logout</a></button>
+        {% else %}
+            <button><a href="{% url 'login' %}">Login</a></button>
+            <button><a href="{% url 'register' %}">Register</a></button>
+        {% endif %}
+    </nav>
 </body>
 </html>

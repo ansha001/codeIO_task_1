@@ -1,0 +1,29 @@
+{% extends 'base.html'%}
+{% block content %}    
+    <div class="form">
+        <form class="login" action="post">{% csrf_token %}
+            <h1>Account Login</h1>
+            <input type="email" class="email" placeholder="Email address" required>
+            <input class="password" type="password" placeholder="Password" minlength="6" autocomplete="current-password" required>
+
+            {% for field in login_form %}
+				<p>
+				{% for error in field.errors %}
+				<p style="color: red">{{ error }}</p>
+				{% endfor %}
+				</p>
+				{% endfor %}
+				{% if registration_form.non_field_errors %}
+				<div style="color: red">
+					<p>{{registration_form.non_field_errors}}</p>
+				</div>
+				{% endif %}
+            <button>Log In</a></button>
+            <div class="message"><a href="#">Forgot password</a></div>
+            <p class="message">Not registered? 
+                <a href="{% url 'register'%}">Create an account</a>
+            </p>
+        </form>
+    </div>
+{% endblock content %}
+    
