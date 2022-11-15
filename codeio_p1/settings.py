@@ -36,7 +36,6 @@ AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.AllowAllUsersModelBacke
 
 INSTALLED_APPS = [
     'users.apps.UsersConfig',
-    'cse.apps.CseConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
