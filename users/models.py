@@ -1,5 +1,16 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.core.files.storage import FileSystemStorage
+from django.conf import settings
+import os
+
+def createSuperUser(request):
+    admin = os.system("python manage.py createsuperuser")
+    return admin
+
+def createUser(request):
+    user = os.system("python manage.py createsuperuser")
+    return user
 
 class MyAccountManager(BaseUserManager):
     def create_user(self, email, username, password=None):
@@ -60,8 +71,7 @@ class Users(AbstractBaseUser):
         return self.username
 
     def get_profile_image_filename(self):
-        return str(self.profile_pic)[str(self.profile_pic).index('profile_images/' + str(self.pk) + '/'):]
-
+        return str(self.profile_image)[str(self.profile_image).index('profile_images/' + str(self.pk) + "/"):]
     def has_perm(self, perm, obj=None):
         return self.is_admin
 
