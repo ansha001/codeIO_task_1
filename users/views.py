@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate, logout
+from django.core.mail import EmailMessage
+from django.contrib import messages
 
 from users.forms import RegistrationForm, AccountAuthenticationForm
 
@@ -11,9 +13,9 @@ def home_view(request):
 def register_view(request, *args, **kwargs):
 	user = request.user
 	if user.is_authenticated: 
-		response = redirect("success/"+str(user.id)+"/")
-		return response
+		return HttpResponse("You are already authenticated as " + user.email)
 
+	
 	context = {}
 	if request.POST:
 		form = RegistrationForm(request.POST)
@@ -21,8 +23,8 @@ def register_view(request, *args, **kwargs):
 			form.save()
 			email = form.cleaned_data.get('email').lower()
 			raw_password = form.cleaned_data.get('password1')
-			account = authenticate(email=email, password=raw_password)
-			login(request, account)
+			user = authenticate(email=email, password=raw_password)
+			login(request, user)
 			destination = kwargs.get("next")
 			if destination:
 				return redirect(destination)
@@ -80,7 +82,6 @@ def get_redirect_if_exists(request):
 	return redirect
 
 
-from django.core.mail import EmailMessage
 from django.conf import settings
 from django.template.loader import render_to_string
 from users.models import Users
