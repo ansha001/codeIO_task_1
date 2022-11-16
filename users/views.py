@@ -11,7 +11,8 @@ def home_view(request):
 def register_view(request, *args, **kwargs):
 	user = request.user
 	if user.is_authenticated: 
-		return HttpResponse("You are already authenticated as " + str(user.email))
+		response = redirect("success/"+str(user.id)+"/")
+		return response
 
 	context = {}
 	if request.POST:
@@ -89,8 +90,8 @@ def success_view(request,uid):
 	user=request.user
 	template = render_to_string('users/email_template.html', { 'name':request.user.username, 'uid':uid })
 	email = EmailMessage(
-		'subject',
-		'body',
+		'Thank you for registering',
+		template,
 		settings.EMAIL_HOST_USER,
 		[request.user.email],
 	)
