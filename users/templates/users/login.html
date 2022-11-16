@@ -20,7 +20,7 @@
 
 				{% endif %}
             <button type="submit">Log In</button>
-            <div class="message"><a href="#">Forgot password</a></div>
+            <div class="message"><a href="{% url 'password_reset' %}">Forgot password</a></div>
             <p class="message">Not registered? 
                 <a href="{% url 'register'%}">Create an account</a>
             </p>

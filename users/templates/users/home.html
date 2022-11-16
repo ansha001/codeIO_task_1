@@ -8,10 +8,12 @@
 </head>
 <body>
     <nav>
-        <h1>Home Page</h1>
+        
         {% if request.user.is_authenticated %}
+            <h1>Home page after authentication</h1>
             <button><a href="{% url 'logout' %}">Logout</a></button>
         {% else %}
+            <h1>Home Page</h1>
             <button><a href="{% url 'login' %}">Login</a></button>
             <button><a href="{% url 'register' %}">Register</a></button>
         {% endif %}

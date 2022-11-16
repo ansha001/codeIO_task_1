@@ -8,10 +8,6 @@ def createSuperUser(request):
     admin = os.system("python manage.py createsuperuser")
     return admin
 
-def createUser(request):
-    user = os.system("python manage.py createsuperuser")
-    return user
-
 class MyAccountManager(BaseUserManager):
     def create_user(self, email, username, password=None):
         if not email:

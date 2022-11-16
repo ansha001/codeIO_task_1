@@ -77,3 +77,26 @@ def get_redirect_if_exists(request):
 		if request.GET.get("next"):
 			redirect = str(request.GET.get("next"))
 	return redirect
+
+
+from django.core.mail import EmailMessage
+from django.conf import settings
+from django.template.loader import render_to_string
+from users.models import Users
+
+
+def success_view(request,uid):
+	user=request.user
+	template = render_to_string('users/email_template.html', { 'name':request.user.username, 'uid':uid })
+	email = EmailMessage(
+		'subject',
+		'body',
+		settings.EMAIL_HOST_USER,
+		[request.user.email],
+	)
+	email.fail_silently = False
+	email.send()
+	user = Users.objects.get(id=uid)
+	context = {'user':user}
+
+	return render(request, 'users/success.html', context)
